@@ -11,6 +11,4 @@ RUN pnpm install
 
 COPY . /usr/src/app/frontend
 
-RUN pnpm build
-
-CMD ["pnpm", "start"]
+CMD ["pnpm", "dev", "--host"]
