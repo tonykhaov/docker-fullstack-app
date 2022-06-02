@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Delete, Get, Param } from '@nestjs/common';
 import { Todo } from './todo.model';
 import { TodosService } from './todos.service';
 
@@ -14,5 +14,10 @@ export class TodosController {
   @Get(':id')
   getTodo(@Param('id') id: string): Todo {
     return this.todosService.findOne(id);
+  }
+
+  @Delete(':id')
+  deleteTodo(@Param('id') id: string): string {
+    return this.todosService.delete(id);
   }
 }
