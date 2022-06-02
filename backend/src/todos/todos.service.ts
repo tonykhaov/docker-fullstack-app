@@ -31,4 +31,14 @@ export class TodosService {
     this.todos.push(todoWithId);
     return todoWithId;
   }
+  update(id: string, todo: Omit<Todo, 'id'>): Todo {
+    const todoToUpdate = this.todos.find((todo) => todo.id === id);
+    if (todo.title) {
+      todoToUpdate.title = todo.title;
+    }
+    if (todo.completed) {
+      todoToUpdate.completed = todo.completed;
+    }
+    return todoToUpdate;
+  }
 }
