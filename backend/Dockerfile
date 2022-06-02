@@ -1,7 +1,15 @@
-FROM denoland/deno:alpine-1.22.1
+FROM node:lts-bullseye
 
 WORKDIR /usr/src/app/backend
 
-COPY . .
+COPY package.json /usr/src/app/backend
+COPY pnpm-lock.yaml /usr/src/app/backend
 
-CMD ["deno", "run", "--allow-net", "app.ts"]
+RUN npm install -g pnpm
+
+RUN pnpm install
+
+COPY . /usr/src/app/backend
+
+RUN pnpm run build
+CMD ["pnpm", "start"]
